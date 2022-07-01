@@ -9,8 +9,21 @@
             background-color: #070e33;
         }
     </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.getJSON('js/jisyo.json', function(data) {
+            for (var i in data.en) {
+                list += '<li>' + i + ': ' + data.en[i] + ' шт. </li>';
+            }
+
+            document.getElementById('div').innerHTML += header;
+            document.getElementById('div').innerHTML += '<ul>' + list + '</ul>';
+        });
+    </script>
+
 </head>
 <body>
-    <input class="search" placeholder="Введите ономатоп(на английском) из манги" />
+    <input type="text" class="search" id="search" placeholder="Введите ономатоп(на английском) из манги" />
+    
 </body>
 </html>
