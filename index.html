@@ -4,26 +4,74 @@
     <meta charset="utf-8" />
     <title>Astrophonetic</title>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-        body {
-            background-color: #070e33;
-        }
-    </style>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $.getJSON('js/jisyo.json', function(data) {
-            for (var i in data.en) {
-                list += '<li>' + i + ': ' + data.en[i] + ' шт. </li>';
+        window.onload=function(){ 
+            jQuery("#search").on("keyup", function() {
+                var value = $(this).val().toUpperCase(),
+                    count = 0;
+                jQuery("#tablitsa div").each(function() {
+                    if($(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)) {
+                        $("#tab1").hide(); // hide
+
+                    } else {
+                        $("#tab1").hide(); // show
+                    }
+                });
+            });
+            var boxshadow = "";
+
+            for(var i = 0; i <= 2000; i++){
+                px = Math.random() < 0.5 ? "-" : "";
+                py = Math.random() < 0.5 ? "-" : "";
+                x = Math.floor((Math.random() * window.innerWidth) + 1);
+                y = Math.floor((Math.random() * window.innerHeight) + 1);
+                s = Math.floor((Math.random() * 2) - 1);
+                boxshadow += px+x+"px "+py+y+"px 0 "+s+"px #fff,";
             }
 
-            document.getElementById('div').innerHTML += header;
-            document.getElementById('div').innerHTML += '<ul>' + list + '</ul>';
-        });
+            boxshadow = boxshadow.slice(0, -1);
+
+            stars.style.boxShadow = boxshadow;
+
+        }
     </script>
 
 </head>
 <body>
-    <input type="text" class="search" id="search" placeholder="Введите ономатоп(на английском) из манги" />
-    
+
+    <input type="text" class="search" id="search" placeholder="Введите ономатоп(или междометие) из манги" />
+    <br />
+    <div id="tablitsa">
+        <div id="tab1" class="tablitsa">
+            <p>
+                Ономатоп: Achoo; Ah-choo; At-choo<br />
+                Перевод: Апчхи<br />
+                Описание: Чихание
+            </p>
+        </div>
+        <div id="tab1" class="tablitsa">
+            <p>
+                Ономатоп: Whoacchoo<br>
+                Перевод: Аачхуу<br>
+                Описание: “Ураганный чих”
+            </p>
+        </div>
+        <div id="tab1" class="tablitsa">
+            <p>
+                Ономатоп: Ha’kchoo<br>
+                Перевод: Кщу; Чих<br>
+                Описание: Короткий чих
+            </p>
+        </div>
+        <div id="tab1" class="tablitsa">
+            <p>
+                Ономатоп: Aaa<br>
+                Перевод: Ааа<br>
+                Описание: Крик
+            </p>
+        </div>
+    </div>
+    <div id="stars" class="stars"></div>
 </body>
 </html>
