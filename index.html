@@ -12,10 +12,10 @@
                     count = 0;
                 jQuery("#tablitsa div").each(function() {
                     if($(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)) {
-                        $("#tab1").hide(); // hide
+                        $("div").addClass("hidden"); // hide
 
                     } else {
-                        $("#tab1").hide(); // show
+                        $("div").removeClass("hidden"); // show
                     }
                 });
             });
